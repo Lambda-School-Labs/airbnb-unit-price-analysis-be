@@ -7,7 +7,7 @@ const router = express.Router();
 
 const authConfig = {
     domain: "dev-cz8-jv29.auth0.com",
-    audience: "YOUR_API_IDENTIFIER"
+    audience: "https://airbnbupa"
   };
   // Define middleware that validates incoming bearer tokens
   // using JWKS from dev-cz8-jv29.auth0.com
