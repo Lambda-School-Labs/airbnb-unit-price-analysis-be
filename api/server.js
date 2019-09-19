@@ -1,7 +1,10 @@
 const express = require('express');
-// const apiRouter = require('./api/router');
+const apiRouter = require('./router');
+const cors = require('cors')
 
 const server = express();
+
+server.use(cors())
 
 const logger = (req, res, next) => {
     console.log(`${req.method} request was made to ${req.url}`)
@@ -10,6 +13,9 @@ const logger = (req, res, next) => {
 
 server.use(express.json());
 
-// server.use('/', logger, apiRouter);
+server.use('/api', logger, apiRouter);
 
 module.exports = server;
+
+
+
