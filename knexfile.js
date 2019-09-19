@@ -1,56 +1,67 @@
-// Update with your config settings.
+require("dotenv").config();
+
+const pg = require("pg");
+
+const localPgConnection = {
+  host: "localhost",
+  user: "postgres",
+  password: "ReleaseCanvas1",
+  database: "postgres"
+};
+
+const dbConnection = process.env.DATABASE_URL || localPgConnection;
+
+// Postgres configurations
+// Command for running postgres locally:
+// knex migrate:latest --env production
+// knex seed:run --env production
 
 module.exports = {
-
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './data/airbnb.db3'
-    },
+    client: "pg",
+    connection: dbConnection,
     useNullAsDefault: true,
     migrations: {
-      directory: './data/migrations'
+      directory: "./data/migrations"
     },
-    seeds: { 
-      directory: './data/seeds' 
+    seeds: {
+      directory: "./data/seeds"
     },
     pool: {
       afterCreate: (conn, done) => {
-        conn.run('PRAGMA foreign_keys = ON', done);
+        conn.run("PRAGMA foreign_keys = ON", done);
       }
     }
   },
 
-  // staging: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // },
+  staging: {
+    client: "pg",
+    connection: dbConnection,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
+    }
+  },
 
-  // production: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // }
-
+  production: {
+    client: "pg",
+    connection: dbConnection,
+    useNullAsDefault: true,
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
+    }
+  }
 };
