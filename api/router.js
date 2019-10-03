@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
+const ListingsRouter = require('../listings/listings-router');
 
 // const usersRouter = require('../users/users-router')
 const router = express.Router();
@@ -29,5 +30,7 @@ router.get("/", checkJwt, (req, res) => {
       msg: "Your Access Token was successfully validated!"
     });
   });
+
+router.use('/listings', ListingsRouter);
 
 module.exports = router;

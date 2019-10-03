@@ -19,6 +19,6 @@ server.get("/", (req, res) => {
   res.send(`<h2>AirBnB Unit Price Analysis</h2>`);
 });
 
-// server.use('/', logger, apiRouter);
+server.use('/api', logger, apiRouter);
 
 module.exports = server;

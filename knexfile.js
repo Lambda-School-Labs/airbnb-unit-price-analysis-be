@@ -18,8 +18,11 @@ const dbConnection = process.env.DATABASE_URL || localPgConnection;
 
 module.exports = {
   development: {
-    client: "pg",
-    connection: dbConnection,
+    client: "sqlite3",
+    connection: {
+      filename: './data/airbnbDb.db3'
+    },
+    // connection: dbConnection,
     useNullAsDefault: true,
     migrations: {
       directory: "./data/migrations"
