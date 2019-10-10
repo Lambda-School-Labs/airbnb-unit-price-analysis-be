@@ -3,11 +3,11 @@ const router = express.Router();
 
 const Listings = require("./listings-model");
 
-// router.get('/', (req, res) => {
-//     Listings.find()
-//         .then(listings => res.status(200).json(listings))
-//         .catch(err => res.status(500).json({ error: "DOH!" }))
-// });
+router.get("/", (req, res) => {
+  Listings.find()
+    .then(listings => res.status(200).json(listings))
+    .catch(err => res.status(500).json({ error: "DOH!" }));
+});
 
 router.post("/retrieve", (req, res) => {
   const email = req.body.email;

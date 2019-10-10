@@ -24,4 +24,14 @@ describe("listings", () => {
         });
     });
   });
+
+  describe("retrieve listings db", () => {
+    it("should return a 200", () => {
+      return request(server)
+        .get("/api/listings")
+        .then(res => {
+          expect(res.status).toBe(200);
+        });
+    });
+  });
 });
