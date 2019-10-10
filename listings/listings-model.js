@@ -3,8 +3,10 @@ const db = require("../data/dbConfig");
 module.exports = {
   find,
   findByEmail,
+  findByID,
   saveListing,
-  deleteListing
+  deleteListing,
+  updateListing
 };
 
 function find() {
@@ -13,6 +15,10 @@ function find() {
 
 function findByEmail(email) {
   return db("listings").where({ user_email: email });
+}
+
+function findByID(id) {
+  return db("listings").where({ id });
 }
 
 function saveListing(listing) {
@@ -27,4 +33,10 @@ function deleteListing(id) {
   return db("listings")
     .where({ id })
     .delete();
+}
+
+function updateListing(id, changes) {
+  return db("listings")
+    .where({ id })
+    .update(changes);
 }
