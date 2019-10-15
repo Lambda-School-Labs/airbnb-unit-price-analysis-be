@@ -52,11 +52,17 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("/retrieve", (req, res) => {
-  const email = req.body.email;
+  const email = req.body.user_email;
 
   Listings.findByEmail(email)
-    .then(listings => res.status(200).json(listings))
-    .catch(err => res.status(500).json({ error: "DOH!" }));
+    .then(listings => {
+      // console.log(listings)
+      res.status(200).json(listings)
+    })
+    .catch(err => {
+      // console.log(err)
+      res.status(500).json({ error: "DOH!" })
+    });
 });
 
 router.post("/save", (req, res) => {
