@@ -18,7 +18,9 @@ function findByEmail(email) {
 }
 
 function findByID(id) {
-  return db("listings").where({ id });
+  return db("listings")
+    .where({ id })
+    .first();
 }
 
 function saveListing(listing) {
@@ -31,8 +33,16 @@ function saveListing(listing) {
 
 function deleteListing(id) {
   return db("listings")
-    .where({ id })
-    .delete();
+    .where({ id: id })
+    .then(listing => {
+      console.log(listing);
+      return db("listings")
+        .where({ id: listing[0].id })
+        .delete()
+        .then(() => {
+          return findByEmail(listing[0].user_email);
+        });
+    });
 }
 
 function updateListing(id, changes) {

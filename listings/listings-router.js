@@ -11,8 +11,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", (req, res) => {
   const id = req.params.id;
-
-  Listings.findByID(id)
+  const listing = Listings.findByID(id)
     .then(listing => {
       if (!listing) {
         res
@@ -33,11 +32,10 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
 
   Listings.deleteListing(id)
-    .then(listing => {
-      if (listing) {
-        res
-          .status(200)
-          .json({ message: "Your listing was deleted successfully." });
+    .then(listings => {
+      console.log(listings);
+      if (listings) {
+        res.status(200).json(listings);
       } else {
         res
           .status(404)
@@ -45,7 +43,8 @@ router.delete("/:id", (req, res) => {
       }
     })
     .catch(error => {
-      req
+      console.log(error);
+      res
         .status(500)
         .json({ error: "Something went wrong trying to delete this listing." });
     });
@@ -87,8 +86,10 @@ router.post("/save", (req, res) => {
 
 router.put("/:id/", (req, res) => {
   const listing = req.body;
-
-  Listings.updateListing(req.params.id, req.body)
+  const id = req.params.id;
+  console.log(listing);
+  console.log(req.params.id);
+  Listings.updateListing(id, listing)
     .then(listing =>
       res
         .status(200)

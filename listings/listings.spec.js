@@ -32,7 +32,7 @@ describe("listings", () => {
   });
 
   describe("retrieve a listing", () => {
-    it("should return a 500", () => {
+    it("should return a 200", () => {
       return request(server)
         .get("/api/listings/1")
         .then(res => {
@@ -46,16 +46,6 @@ describe("listings", () => {
     it("should return a 200", () => {
       return request(server)
         .get("/api/listings")
-        .then(res => {
-          expect(res.status).toBe(200);
-        });
-    });
-  });
-
-  describe("delete a listing", () => {
-    it("should return a 200", () => {
-      return request(server)
-        .delete("/api/listings/1")
         .then(res => {
           expect(res.status).toBe(200);
         });
@@ -81,6 +71,37 @@ describe("listings", () => {
         .then(res => {
           expect(res.status).toBe(200);
         });
+    });
+
+    // describe("update a listing that doesn't exist", () => {
+    //   it("should return a 404", () => {
+    //     return request(server)
+    //       .put("/api/listings/2")
+    //       .send(newListing)
+    //       .then(res => {
+    //         expect(res.status).toBe(404);
+    //       });
+    //   });
+    // });
+  });
+
+  describe("delete a listing", () => {
+    it("should return a 200", () => {
+      return request(server)
+        .delete("/api/listings/1")
+        .then(res => {
+          expect(res.status).toBe(200);
+        });
+    });
+
+    describe("delete a listing that doesn't exist", () => {
+      it("should return a 404", () => {
+        return request(server)
+          .delete("/api/listings/2")
+          .then(res => {
+            expect(res.status).toBe(404);
+          });
+      });
     });
   });
 });
