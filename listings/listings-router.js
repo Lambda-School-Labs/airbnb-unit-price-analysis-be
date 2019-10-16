@@ -4,22 +4,22 @@ const router = express.Router();
 const Listings = require('./listings-model');
 
 // router.get('/', (req, res) => {
-//     Listings.find()
+    //     Listings.find()
 //         .then(listings => res.status(200).json(listings))
 //         .catch(err => res.status(500).json({ error: "DOH!" }))
 // });
 
 router.post('/retrieve', (req, res) => {
-    const email = req.body.email;
+    const email = req.body.user_email;
 
     Listings.findByEmail(email)
-        .then(listings => res.status(200).json(listings))
-        .catch(err => res.status(500).json({ error: "DOH!" }));
+    .then(listings => res.status(200).json(listings))
+    .catch(err => res.status(500).json({ error: "DOH!" }));
 });
 
 router.post('/save', (req, res) => {
     const listing = req.body;
-
+    
     
     const savedListing = {
         picture_url: listing.picture_url,

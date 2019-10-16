@@ -18,7 +18,8 @@ function findByEmail(email) {
 function saveListing(listing) {
     return db('listings')
         .insert(listing)
-        .then(() => {
+        .then((id) => {
+            console.log("Hey this is an ID", id);
             return findByEmail(listing.user_email);
         });
 };
