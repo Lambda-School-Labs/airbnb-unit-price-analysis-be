@@ -85,7 +85,8 @@ router.post("/save", (req, res) => {
     review_scores_location: listing.review_scores_location,
     review_scores_rating: listing.review_scores_rating,
     review_scores_value: listing.review_scores_value,
-    property_type: listing.property_type
+    property_type: listing.property_type,
+    amenities: listing.amenities
   };
 
   Listings.saveListing(savedListing)
