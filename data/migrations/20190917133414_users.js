@@ -8,6 +8,8 @@ exports.up = function(knex) {
         .notNullable()
     listings.string('city', 255)
         .notNullable()
+    listings.string('state', 255)
+        .notNullable()
     listings.string('room_type', 255)
         .notNullable()
     listings.integer('guests_included')
@@ -42,9 +44,22 @@ exports.up = function(knex) {
         //-------------
     listings.string('amenities', 255 )
         .notNullable()
+    listings.integer('price')
+        .notNullable()
+    listings.string('access', 255 )
+        .notNullable()
+    listings.string('notes', 255)
+        .notNullable
+    listings.string('space', 255)
+        .notNullable
+    listings.string('summary', 255)
+        .notNullable
+    listings.string('transit', 255)
+        .notNullable
+    listings.integer('zipcode')
+        .notNullable
 });
 };
-
 
 exports.down = function(knex) {
     return knex.schema
