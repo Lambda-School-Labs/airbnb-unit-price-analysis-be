@@ -71,6 +71,7 @@ router.post("/save", (req, res) => {
     picture_url: listing.picture_url,
     name: listing.name,
     city: listing.city,
+    state: listing.state,
     room_type: listing.room_type,
     guests_included: listing.guests_included,
     bedrooms: listing.bedrooms,
@@ -86,8 +87,17 @@ router.post("/save", (req, res) => {
     review_scores_rating: listing.review_scores_rating,
     review_scores_value: listing.review_scores_value,
     property_type: listing.property_type,
-    amenities: listing.amenities
+    amenities: listing.amenities,
+    price: listing.price,
+    access: listing.access,
+    notes: listing.notes,
+    space: listing.space,
+    summary: listing.summary,
+    transit: listing.transit,
+    zipcode: listing.zipcode
   };
+
+
 
   Listings.saveListing(savedListing)
     .then(listings => res.status(200).json(listings))
