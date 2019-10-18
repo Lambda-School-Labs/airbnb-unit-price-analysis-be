@@ -76,7 +76,16 @@ router.post("/save", (req, res) => {
     bedrooms: listing.bedrooms,
     beds: listing.beds,
     bathrooms: listing.bathrooms,
-    user_email: listing.user_email
+    user_email: listing.user_email,
+    url: listing.url,
+    review_scores_accuracy: listing.review_scores_accuracy,
+    review_scores_checkin: listing.review_scores_checkin,
+    review_scores_cleanliness: listing.review_scores_cleanliness,
+    review_scores_communication: listing.review_scores_communication,
+    review_scores_location: listing.review_scores_location,
+    review_scores_rating: listing.review_scores_rating,
+    review_scores_value: listing.review_scores_value,
+    property_type: listing.property_type
   };
 
   Listings.saveListing(savedListing)
