@@ -20,7 +20,7 @@ module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: './data/airbnbDb.db3'
+      filename: "./data/airbnbDb.db3"
     },
     // connection: dbConnection,
     useNullAsDefault: true,
@@ -59,6 +59,25 @@ module.exports = {
     pool: {
       min: 2,
       max: 10
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
+    }
+  },
+
+  testing: {
+    client: "pg",
+    useNullAsDefault: true,
+    connection: {
+      filename: "./data/test.db3"
+    },
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run("PRAGMA foreign_keys = ON", done);
+      }
     },
     migrations: {
       directory: "./data/migrations"
